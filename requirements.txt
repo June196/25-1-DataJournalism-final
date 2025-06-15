@@ -1,5 +1,8 @@
 streamlit
 pandas
 numpy
+os
+wordcloud
+Pillow
 matplotlib
-seaborn	
+seaborn
