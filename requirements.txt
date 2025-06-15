@@ -1,8 +1,8 @@
 streamlit
 pandas
 numpy
-wordcloud
-Pillow
 matplotlib
 seaborn
-openpyxl
+altair
+wordcloud
+Pillow
