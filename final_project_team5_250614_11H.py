@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-snu_img_path = r"C:\Users\1126j\file for python\25-1 dataJ\final project_college university\snu_img.jpg"
+snu_img_path = "snu_img.jpg"
 snu_img = st.image(snu_img_path)
 
 
@@ -51,7 +51,7 @@ plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 
 # 데이터 불러오기
-df = pd.read_csv(r"C:\Users\1126j\file for python\25-1 dataJ\final project_college university\CourseList.csv")
+df = pd.read_csv("CourseList.csv")
 
 # 데이터 구조 확인
 print("열 목록:", df.columns.tolist())
