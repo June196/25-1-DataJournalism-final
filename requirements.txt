@@ -6,3 +6,4 @@ seaborn
 altair
 wordcloud
 Pillow
+plotly
