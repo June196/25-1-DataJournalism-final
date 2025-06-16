@@ -57,10 +57,9 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-tab1, tab2, tab3, tab4 = st.tabs(['학부대학', '서울대 학부대학 비전', '서울대 학부대학 교양교육과정', '서울대 학부대학 비교과'])
+tab1, tab2, tab3 = st.tabs(['학부대학', '서울대 학부대학 교양교육과정', '서울대 학부대학 비교과'])
 
 with tab1:
-    st.header('학부대학이란 무엇인가?')
     ## 본론 1: 학부대학이란 무엇인가?
     st.subheader("학부대학이란 무엇인가?")
     st.markdown(f"""
@@ -73,6 +72,10 @@ with tab1:
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("""
+    <br><br><br><br>
+    """, unsafe_allow_html=True)
+    st.subheader('해외 학부대학의 사례들')
     # 데이터 불러오기
     df = pd.read_excel("USA_college_university.xlsx")
 
@@ -115,14 +118,10 @@ with tab1:
 #    st.image(program_img_path, width = 300)
 #    st.markdown(college_data['program_text'])
     
-
-    
-
-
-
-
-with tab2:
-    st.header('서울대 학부대학의 비전은 무엇인가?')
+    st.markdown("""
+    <br><br><br><br>
+    """, unsafe_allow_html=True)
+    st.subheader('서울대 학부대학의 비전')
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
@@ -155,11 +154,11 @@ with tab2:
 
 
 
-with tab3:
-    st.header('서울대 학부대학 교양교육과정은?')
+with tab2:
     ## 본론 2: 서울대 학부대학_교양교육과정
-    st.image('./changed_curri.png')
-    st.caption("출처: 2024. 9. 27. 학부대학 설립 공청회(2차) 발표 자료")
+    st.subheader('교양교육과정 개편과 베리타스 강의 신설')
+    st.image('./curri_img.png')
+    st.caption("출처: 서울대학교 학부대학 홈페이지")
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
@@ -169,6 +168,12 @@ with tab3:
             서울대는 교양 교육을 통해 무엇을 가르칠 것인지 근본적으로 되묻고 있다. 
             이 가운데 가장 주목할 변화는 ‘베리타스(Veritas)’ 영역의 신설이다.
         </p>
+        </div>
+    """, unsafe_allow_html=True)
+    st.image('./changed_curri2.png')
+    st.caption("출처: 서울대학교 학부대학 홈페이지")
+    st.markdown(f"""
+    <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
             기존 공통교양은 ‘학문의 토대’, ‘지성의 열쇠’, ‘지성의 확장’ 세 영역으로 구성되어 있었다. 
             ‘학문의 토대’는 글쓰기, 외국어, 수학·과학 등 기초 도구 역량을, 
@@ -469,8 +474,7 @@ with tab3:
 
 
 
-with tab4:
-    st.header('서울대 학부대학 비교과 프로그램은?')
+with tab3:
     st.subheader('비교과 프로그램의 현황과 한계')
     st.markdown('서울대 학부대학 홈페이지에서는 기초학습능력향상, 핵심역량향상, 전공탐색이라는 세 가지 분류 아래 다양한 비교과 프로그램을 소개하고 있다.')
     st.image("./program_list1.png")
