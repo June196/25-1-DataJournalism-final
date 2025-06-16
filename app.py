@@ -488,7 +488,7 @@ with tab3:
         '전공탐색': 'program_list3.png'
     }
     selected_label = st.selectbox('분류를 선택하시오.', list(program_dict.keys()))
-    st.image(program_dict[selected_label], caption=selected_label, use_container_width=True)
+    st.image(program_dict[selected_label], use_container_width=True)
     st.caption('출처: 학부대학 홈페이지')
     st.markdown("그러나 이들 프로그램을 자세히 살펴보면, 대부분이 이미 서울대 내에서 운영 중인 기존 프로그램들을 재분류한 것에 불과하다. 이는 학부대학이 강조하는 융복합 교육이나 핵심역량 강화라는 목표를 실질적으로 달성하기에는 한계가 있음을 시사한다. 진정한 융복합 인재 양성을 위해서는 기존 프로그램의 단순한 재배치를 넘어, 핵심역량을 기준으로 한 새로운 비교과 활동이 체계적으로 설계되고 운영될 필요가 있다.")
 
