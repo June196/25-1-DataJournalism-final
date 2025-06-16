@@ -121,7 +121,7 @@ with tab1:
 #    st.image(program_img_path, width = 300)
     st.markdown(f"""
     <div style='font-size:100%; color:black;'>
-        {college_data['orogram_text']}  
+        {college_data['program_text']}  
     </div>
     """, unsafe_allow_html=True)
     
