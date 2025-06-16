@@ -69,7 +69,7 @@ with tab1:
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p margin-bottom: 20px;'>
             그렇다면, "학부대학"이란 무엇일까? 결코 낯선 개념은 아니다. 학부대학은 전공 이전의 기초교육 및 교양교육을 담당하며, 
-학생들이 폭넓은 지식과 통합적 사고를 바탕으로 자신의 진로와 전공을 탐색할 수 있도록 지원하는 대학 내 교육 조직이다. 이미 미국을 비롯한 각국의 대학들은 수십 년 전부터 학부대학 체계를 운영해 왔고, 
+            학생들이 폭넓은 지식과 통합적 사고를 바탕으로 자신의 진로와 전공을 탐색할 수 있도록 지원하는 대학 내 교육 조직이다. 이미 미국을 비롯한 각국의 대학들은 수십 년 전부터 학부대학 체계를 운영해 왔고, 
             각자의 비전과 철학을 반영한 고유한 방식으로 교양교육과 전공 탐색을 지원해왔다. 몇 예시들을 통해 학부대학이란 무엇인지를 확인해보자.
         </p>
     </div>
@@ -119,7 +119,7 @@ with tab1:
 
 #    program_img_path = college_data['program_img_path']
 #    st.image(program_img_path, width = 300)
-#    st.markdown(college_data['program_text'])
+    st.markdown("college_data['program_text']")
     
     st.markdown("""
     <br><br><br><br>
