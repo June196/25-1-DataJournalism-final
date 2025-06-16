@@ -238,62 +238,7 @@ with tab2:
     st.altair_chart(bar_chart, use_container_width=True)
     st.caption("※ 데이터 기준: 2025학년도 1학기 기초교양 수강편람")
 
-
-    ## wordcloud
-    # 데이터 불러오기
-    df = pd.read_csv('CourseList.csv')
-    korean_font = './NotoSansKR-Bold.ttf'
-
-    # SNU 컬러 팔레트
-    snu_palette = ['rgb(15, 15, 112)',
-                'rgb(220, 218, 178)',
-                'rgb(102, 102, 102)',
-                'rgb(139,111,77)',
-                'rgb(139,141,143)']
-
-    # 폰트 객체 생성
-    font_path1 = './NotoSansKR-Medium.ttf'  # 원하는 한글 폰트 경로
-    fontprop = fm.FontProperties(fname=font_path1)
-
-    # 색상 함수 정의
-    def snu_color_func(word, font_size, position, orientation, font_path, random_state):
-        return random.choice(snu_palette)
-    
-    # 워드클라우드 함수
-    def generate_wordcloud_by_area(df, font_path):
-        unique_areas = df['영역'].dropna().unique()
-        n_cols = 2
-        n_rows = (len(unique_areas) + 1) // n_cols
-
-        fig, axes = plt.subplots(n_rows, n_cols, figsize=(14, 4 * n_rows))
-        axes = axes.flatten()
-
-        for i, area in enumerate(unique_areas):
-            area_df = df[df['영역'] == area]
-            text = " ".join(area_df['교과목명'].astype(str))
-
-            wordcloud = WordCloud(
-                font_path=font_path,
-                width=800,
-                height=400,
-                background_color='white'
-            ).generate(text)
-
-            # 색 입히기
-            wordcloud.recolor(color_func=snu_color_func)
-
-            axes[i].imshow(wordcloud, interpolation='bilinear')
-            axes[i].axis('off')
-            axes[i].set_title(f"{area}", fontsize=16, fontproperties=fontprop)
-
-        for j in range(i + 1, len(axes)):
-            axes[j].axis('off')
-
-        plt.tight_layout()
-        st.pyplot(fig)
-
-    # Streamlit 출력
-    generate_wordcloud_by_area(df, font_path=korean_font)   
+    st.image("./wordcloud_img.png")
 
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
@@ -304,6 +249,8 @@ with tab2:
         </p>
         </div>
     """, unsafe_allow_html=True)
+
+
 
 
 
