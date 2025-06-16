@@ -238,7 +238,7 @@ with tab2:
     
 
     # 1. 데이터 불러오기
-    df = pd.read_csv('C:/Users/1126j/file for python/25-1 dataJ/25-1-DataJournalism-final/CourseList.csv')
+    df = pd.read_csv('./CourseList.csv')
     df.columns = df.columns.str.strip()  # 열 이름 공백 제거
 
     # 2. 사용자 정의 불용어
@@ -261,7 +261,7 @@ with tab2:
         return random.choice(snu_palette)
 
     # 5. 폰트 설정
-    korean_font = 'C:/Users/1126j/file for python/25-1 dataJ/25-1-DataJournalism-final/NotoSansKR-Bold.ttf'
+    korean_font = './NotoSansKR-Bold.ttf'
     fontprop = fm.FontProperties(fname=korean_font)
 
     # 6. 워드클라우드 생성 함수
