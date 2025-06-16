@@ -56,6 +56,9 @@ st.markdown(f"""
     </p>
 </div>
 """, unsafe_allow_html=True)
+st.markdown("""
+<br><br>
+""", unsafe_allow_html=True)
 
 tab1, tab2, tab3 = st.tabs(['학부대학', '서울대 학부대학 교양교육과정', '서울대 학부대학 비교과'])
 
@@ -122,6 +125,7 @@ with tab1:
     <br><br><br><br>
     """, unsafe_allow_html=True)
     st.subheader('서울대 학부대학의 비전')
+    st.markdown("> **도전과 공감으로 미래를 여는 지성**")
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
@@ -148,7 +152,8 @@ with tab1:
         </div>
     """, unsafe_allow_html=True)
 
-    st.image('./core_skills_img.png')        
+    st.image('./core_skills_img.png')   
+    st.caption('출처: 2025학년도 1학기 기초교양 수강편람')     
 
 
 
@@ -158,7 +163,7 @@ with tab2:
     ## 본론 2: 서울대 학부대학_교양교육과정
     st.subheader('교양교육과정 개편과 베리타스 강의 신설')
     st.image('./curri_img.png')
-    st.caption("출처: 서울대학교 학부대학 홈페이지")
+    st.caption("출처: 서울대학교 학부대학 리플릿 2025")
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
@@ -171,11 +176,11 @@ with tab2:
         </div>
     """, unsafe_allow_html=True)
     st.image('./changed_curri2.png')
-    st.caption("출처: 서울대학교 학부대학 홈페이지")
+    st.caption("출처: 서울대학교 자연과학대학 홈페이지 공지사항")
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
-            기존 공통교양은 ‘학문의 토대’, ‘지성의 열쇠’, ‘지성의 확장’ 세 영역으로 구성되어 있었다. 
+            기존 공통교양은 ‘학문의 토대’, ‘지성의 열쇠’, ‘지성의 확장’ 세 영역으로 재구성되었다. 
             ‘학문의 토대’는 글쓰기, 외국어, 수학·과학 등 기초 도구 역량을, 
             ‘지성의 열쇠’는 역사·철학·문화 해석 등 인문학적 탐구를, 
             ‘지성의 확장’은 자기주도적 학습과 창의적 사고를 중심에 둔다. 
@@ -477,9 +482,13 @@ with tab2:
 with tab3:
     st.subheader('비교과 프로그램의 현황과 한계')
     st.markdown('서울대 학부대학 홈페이지에서는 기초학습능력향상, 핵심역량향상, 전공탐색이라는 세 가지 분류 아래 다양한 비교과 프로그램을 소개하고 있다.')
-    st.image("./program_list1.png")
-    st.image("./program_list2.png")
-    st.image("./program_list3.png")
+    program_dict = {
+        '기초학습능력향상': 'program_list1.png',
+        '핵심역량향상': 'program_list2.png',
+        '전공탐색': 'program_list3.png'
+    }
+    selected_label = st.selectbox('분류를 선택하시오.', list(program_dict.keys()))
+    st.image(program_dict[selected_label], caption=selected_label, use_container_width=True)
     st.caption('출처: 학부대학 홈페이지')
     st.markdown("그러나 이들 프로그램을 자세히 살펴보면, 대부분이 이미 서울대 내에서 운영 중인 기존 프로그램들을 재분류한 것에 불과하다. 이는 학부대학이 강조하는 융복합 교육이나 핵심역량 강화라는 목표를 실질적으로 달성하기에는 한계가 있음을 시사한다. 진정한 융복합 인재 양성을 위해서는 기존 프로그램의 단순한 재배치를 넘어, 핵심역량을 기준으로 한 새로운 비교과 활동이 체계적으로 설계되고 운영될 필요가 있다.")
 
@@ -583,48 +592,48 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-if st.button("나의 생각 공유하기"):
-    # 입력창 - 라벨 제거, 플레이스홀더만
-    user_opinion = st.text_input("", placeholder="당신이 생각하는 융합교육이란 무엇인가요?")
 
-    # SNU 컬러 팔레트
-    snu_palette = ['rgb(15, 15, 112)',
-                'rgb(220, 218, 178)',
-                'rgb(102, 102, 102)',
-                'rgb(139,111,77)',
-                'rgb(139,141,143)']
+# 입력창 - 라벨 제거, 플레이스홀더만
+user_opinion = st.text_input("", placeholder="당신이 생각하는 융합교육이란 무엇인가요?")
 
-    def snu_color_func(word, font_size, position, orientation, font_path, random_state):
-        return random.choice(snu_palette)
+# SNU 컬러 팔레트
+snu_palette = ['rgb(15, 15, 112)',
+            'rgb(220, 218, 178)',
+            'rgb(102, 102, 102)',
+            'rgb(139,111,77)',
+            'rgb(139,141,143)']
 
-    # CSV 경로 지정
-    csv_path = "opinions.csv"
+def snu_color_func(word, font_size, position, orientation, font_path, random_state):
+    return random.choice(snu_palette)
 
-    # CSV 불러오기 또는 새로 만들기
-    if os.path.exists(csv_path):
-        df = pd.read_csv(csv_path)
-    else:
-        df = pd.DataFrame(columns=['opinion'])
+# CSV 경로 지정
+csv_path = "opinions.csv"
 
-    # 사용자 입력 처리
-    if user_opinion:
-        new_row = pd.DataFrame([[user_opinion]], columns=['opinion'])
-        df = pd.concat([df, new_row], ignore_index=True)
-        df.to_csv(csv_path, index=False)
+# CSV 불러오기 또는 새로 만들기
+if os.path.exists(csv_path):
+    df = pd.read_csv(csv_path)
+else:
+    df = pd.DataFrame(columns=['opinion'])
 
-    # 워드클라우드 생성 및 표시
-    if not df.empty:
-        text = ' '.join(df['opinion'].dropna().astype(str))
-        wordcloud = WordCloud(
-            font_path='NotoSansKR-Bold.ttf',
-            width=800,
-            height=400,
-            background_color='white'
-        ).generate(text)
+# 사용자 입력 처리
+if user_opinion:
+    new_row = pd.DataFrame([[user_opinion]], columns=['opinion'])
+    df = pd.concat([df, new_row], ignore_index=True)
+    df.to_csv(csv_path, index=False)
 
-        wordcloud.recolor(color_func=snu_color_func) 
+# 워드클라우드 생성 및 표시
+if not df.empty:
+    text = ' '.join(df['opinion'].dropna().astype(str))
+    wordcloud = WordCloud(
+        font_path='NotoSansKR-Bold.ttf',
+        width=800,
+        height=400,
+        background_color='white'
+    ).generate(text)
 
-        fig, ax = plt.subplots(figsize=(10, 5))
-        ax.imshow(wordcloud, interpolation='bilinear')
-        ax.axis("off")
-        st.pyplot(fig)
+    wordcloud.recolor(color_func=snu_color_func) 
+
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.axis("off")
+    st.pyplot(fig)
