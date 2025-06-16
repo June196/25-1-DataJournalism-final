@@ -11,6 +11,7 @@ import altair as alt
 import re
 import plotly.express as px
 import matplotlib.font_manager as fm
+import random
 
 
 
@@ -56,7 +57,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-tab1, tab2, tab3, tab4 = st.tabs(['학부대학', '서울대 학부대학 비전', '서울대 학부대학 교과목', '서울대 학부대학 비교과'])
+tab1, tab2, tab3, tab4 = st.tabs(['학부대학', '서울대 학부대학 비전', '서울대 학부대학 교양교육과정', '서울대 학부대학 비교과'])
 
 with tab1:
     st.header('학부대학이란 무엇인가?')
@@ -65,7 +66,8 @@ with tab1:
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p margin-bottom: 20px;'>
-            그렇다면, "학부대학"이란 무엇일까? 결코 낯선 개념은 아니다. 이미 미국을 비롯한 각국의 대학들은 수십 년 전부터 학부대학 체계를 운영해 왔고, 
+            그렇다면, "학부대학"이란 무엇일까? 결코 낯선 개념은 아니다. 학부대학은 전공 이전의 기초교육 및 교양교육을 담당하며, 
+학생들이 폭넓은 지식과 통합적 사고를 바탕으로 자신의 진로와 전공을 탐색할 수 있도록 지원하는 대학 내 교육 조직이다. 이미 미국을 비롯한 각국의 대학들은 수십 년 전부터 학부대학 체계를 운영해 왔고, 
             각자의 비전과 철학을 반영한 고유한 방식으로 교양교육과 전공 탐색을 지원해왔다. 몇 예시들을 통해 학부대학이란 무엇인지를 확인해보자.
         </p>
     </div>
@@ -156,6 +158,8 @@ with tab2:
 with tab3:
     st.header('서울대 학부대학 교양교육과정은?')
     ## 본론 2: 서울대 학부대학_교양교육과정
+    st.image('./changed_curri.png')
+    st.caption("출처: 2024. 9. 27. 학부대학 설립 공청회(2차) 발표 자료")
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
@@ -238,7 +242,6 @@ with tab3:
     fontprop = fm.FontProperties(fname=font_path1)
 
     # 색상 함수 정의
-    import random
     def snu_color_func(word, font_size, position, orientation, font_path, random_state):
         return random.choice(snu_palette)
     
@@ -330,7 +333,7 @@ with tab3:
 
     # Streamlit에 출력
     st.markdown("""
-    <br><br><br><br><br><br>
+    <br><br><br><br>
     """, unsafe_allow_html=True)
     st.subheader('단과대학별 공통교육 영역 평균 이수학점')
     st.altair_chart(bar_chart, use_container_width=True)
@@ -467,72 +470,157 @@ with tab3:
 
 
 with tab4:
-    st.header('서울대 학부대학 비교과')
-    st.image('https://static.streamlit.io/examples/owl.jpg')
+    st.header('서울대 학부대학 비교과 프로그램은?')
+    st.subheader('비교과 프로그램의 현황과 한계')
+    st.markdown('서울대 학부대학 홈페이지에서는 기초학습능력향상, 핵심역량향상, 전공탐색이라는 세 가지 분류 아래 다양한 비교과 프로그램을 소개하고 있다.')
+    st.image("./program_list1.png")
+    st.image("./program_list2.png")
+    st.image("./program_list3.png")
+    st.caption('출처: 학부대학 홈페이지')
+    st.markdown("그러나 이들 프로그램을 자세히 살펴보면, 대부분이 이미 서울대 내에서 운영 중인 기존 프로그램들을 재분류한 것에 불과하다. 이는 학부대학이 강조하는 융복합 교육이나 핵심역량 강화라는 목표를 실질적으로 달성하기에는 한계가 있음을 시사한다. 진정한 융복합 인재 양성을 위해서는 기존 프로그램의 단순한 재배치를 넘어, 핵심역량을 기준으로 한 새로운 비교과 활동이 체계적으로 설계되고 운영될 필요가 있다.")
+
+    st.markdown("""
+    <br><br><br><br>
+    """, unsafe_allow_html=True)
+    st.subheader('해외 대학의 혁신적 사례들')
+    st.markdown(f"""
+    <div style='font-size:100%; color:#333; line-height:1.6;'>
+        <p>
+            이러한 문제의식을 바탕으로 해외 대학들의 사례를 살펴보면, 
+            대학의 vision을 실현할 수 있는 구체적이고 체계적인 프로그램을 통해 학문과 실천을 연결하는 교육 모델을 
+            운영하고 있음을 확인할 수 있다.             
+        </p>
+        <p>
+            다양성을 품은 전인적 교양교육을 표방하는 예일대학교는 Dwight Hall을 통해 단순한 봉사활동을 넘어 
+            학술 활동과 사회적 프로젝트를 연결하는 Fellowships 프로그램을 운영한다. 
+            동물, 예술과 문화, 어린이 및 청소년, 교육, 경제적 불평등, 신앙, 건강, 국제 관계 등 다양한 분야의 그룹과 프로그램을 통해 
+            학생들에게 인턴 경험 및 실질적인 취업 기회까지 제공한다. 이는 대학 차원에서 사회 참여와 학문적 성장을 동시에 
+            추구하는 모델이라 할 수 있다.
+        </p>
+        <p>
+            학생 주도적 학습을 강조하는 브라운 대학교는 지역사회 기반 학습 및 연구(CBLR)를 통해 학생들이 
+            지역사회 파트너와 협력하여 중요한 사회 문제를 조사하도록 한다. 이는 지역사회, 국가, 그리고 전 세계에 봉사한다는 브라운 대학의 사명에 따라, 
+            학문적 경험과 실제 경험을 연결하는 학습을 학부 과정의 핵심으로 자리매김하고 있다.
+        </p>
+        </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <br><br><br><br>
+    """, unsafe_allow_html=True)
+    st.subheader('앞으로의 과제와 방향성')
+    st.markdown(f"""
+    <div style='font-size:100%; color:#333; line-height:1.6;'>
+        <p>
+            해외 사례들이 시사하는 바는 명확하다. 학부대학은 단순히 기존 프로그램을 재배치하는 것이 아니라, 
+            학문과 실천을 연결하는 새로운 교육 경험을 제공해야 한다는 것이다. 
+            또한 명확한 교육 철학과 구체적인 실행 방안이 뒷받침되어야 한다는 점도 중요하다.
+        </p>
+        <p>
+            다행히 대학 측에서도 이러한 필요성을 어느정도 인지하고 있는 것으로 보인다. 
+            학부대학 설립 공청회(3차)에서 우수 비교과 프로그램 육성 계획을 발표한 바 있으며, 
+            이 계획에는 학부대학 자체 비교과 프로그램 개발뿐만 아니라 
+            학부대학 외 기관의 비교과 프로그램 지원 방안도 포함되어 있다.
+        </p>
+        </div>
+    """, unsafe_allow_html=True)
+    st.image("./program_plan.png")
+    st.caption("출처: 2024. 12. 6. 학부대학 설립 공청회(3차) 발표 자료")
+    st.markdown(f"""
+    <div style='font-size:100%; color:#333; line-height:1.6;'>
+        <p>
+            그러나 현재로서는 학부대학이 강조하는 융복합 교육이나 인재상 및 핵심역량을 실질적으로 강화시킬 수 있는 프로그램이 
+            부재한 상황이다. 학부대학의 정체성과 맞닿은 차별화된 프로그램이 뚜렷하게 제시되지 않고 있으며, 
+            실질적인 융복합 교육을 실현할 수 있는 체계적 기반 역시 마련되지 않은 상태다. 
+            따라서 서울대 학부대학이 제 역할을 하기 위해서는 
+            기존 프로그램의 단순한 확대를 넘어 근본적인 교육 경험의 재설계가 필요하다.
+        </p>
+        </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <br><br><br><br>
+    """, unsafe_allow_html=True)
+    st.subheader("진정한 융합교육을 위해")
+    st.markdown(f"""
+    <div style='font-size:100%; color:#333; line-height:1.6;'>
+        <p>
+            서울대 학부대학이 진정한 융합교육의 장이 되기 위해서는 몇 가지 핵심 과제가 해결되어야 한다. 
+            첫째, 현재 운영되거나 기획 중인 프로그램들이 기존 활동과 어떻게 차별화되는지에 대한 명확한 비전과 철학이 
+            제시되어야 한다. 둘째, 학생들이 다양한 학문 분야를 자유롭게 넘나들며, 
+            실제 사회 문제를 탐구하고 해결할 수 있도록 구체적인 교육 설계가 필요하다. 
+        </p>
+        <p>
+            학부대학의 성공은 결국 얼마나 혁신적이고 실질적인 교육 모델을 구축해내는지, 
+            그리고 그것이 학생들의 실제 학습 경험과 어떻게 연결되는지에 달려 있다. 
+            향후 구체적인 실행 과정에서 서울대가 고유한 융합교육 모델을 만들어낼 수 있을지 주목된다.
+        </p>
+        </div>
+    """, unsafe_allow_html=True)
 
 
-st.markdown("---" "---")
 
 
 
 
 
+#SNU color 팔레트
+snu_blue = 'rgb(15, 15, 112)'
+snu_beige = 'rgb(220, 218, 178)'
+snu_gray = 'rgb(102, 102, 102)'
+snu_gold = 'rgb(139,111,77)'
+snu_silver = 'rgb(139,141,143)'
 
-
-
-
-
-
-
-
+st.markdown("""<br><br><br><br>""", unsafe_allow_html=True)
+st.markdown("---")
 st.markdown("""
-<div style='background-color:#0f0f70; padding: 15px 30px; border-radius: 10px; margin-bottom: 20px;'>
-    <h3 style='color: white; text-align: center;'>융합교육에 대한 서울대인의 생각</h3>
+<div style='background-color:black; padding: 15px 30px; border-radius: 0px; margin-bottom: 20px;'>
+    <h3 style='color: rgb(220, 218, 178); text-align: center;'>융합교육에 대한 서울대인의 생각</h3>
 </div>
 """, unsafe_allow_html=True)
 
-# 입력창 - 라벨 제거, 플레이스홀더만
-user_opinion = st.text_input("", placeholder="당신이 생각하는 융합교육이란 무엇인가요?")
+if st.button("나의 생각 공유하기"):
+    # 입력창 - 라벨 제거, 플레이스홀더만
+    user_opinion = st.text_input("", placeholder="당신이 생각하는 융합교육이란 무엇인가요?")
 
+    # SNU 컬러 팔레트
+    snu_palette = ['rgb(15, 15, 112)',
+                'rgb(220, 218, 178)',
+                'rgb(102, 102, 102)',
+                'rgb(139,111,77)',
+                'rgb(139,141,143)']
 
-# SNU 컬러 팔레트
-snu_palette = ['rgb(15, 15, 112)',
-               'rgb(220, 218, 178)',
-               'rgb(102, 102, 102)',
-               'rgb(139,111,77)',
-               'rgb(139,141,143)']
+    def snu_color_func(word, font_size, position, orientation, font_path, random_state):
+        return random.choice(snu_palette)
 
-def snu_color_func(word, font_size, position, orientation, font_path, random_state):
-    return random.choice(snu_palette)
+    # CSV 경로 지정
+    csv_path = "opinions.csv"
 
-# CSV 경로 지정
-csv_path = "opinions.csv"
+    # CSV 불러오기 또는 새로 만들기
+    if os.path.exists(csv_path):
+        df = pd.read_csv(csv_path)
+    else:
+        df = pd.DataFrame(columns=['opinion'])
 
-# CSV 불러오기 또는 새로 만들기
-if os.path.exists(csv_path):
-    df = pd.read_csv(csv_path)
-else:
-    df = pd.DataFrame(columns=['opinion'])
+    # 사용자 입력 처리
+    if user_opinion:
+        new_row = pd.DataFrame([[user_opinion]], columns=['opinion'])
+        df = pd.concat([df, new_row], ignore_index=True)
+        df.to_csv(csv_path, index=False)
 
-# 사용자 입력 처리
-if user_opinion:
-    new_row = pd.DataFrame([[user_opinion]], columns=['opinion'])
-    df = pd.concat([df, new_row], ignore_index=True)
-    df.to_csv(csv_path, index=False)
+    # 워드클라우드 생성 및 표시
+    if not df.empty:
+        text = ' '.join(df['opinion'].dropna().astype(str))
+        wordcloud = WordCloud(
+            font_path='NotoSansKR-Bold.ttf',
+            width=800,
+            height=400,
+            background_color='white'
+        ).generate(text)
 
-# 워드클라우드 생성 및 표시
-if not df.empty:
-    text = ' '.join(df['opinion'].dropna().astype(str))
-    wordcloud = WordCloud(
-        font_path='NotoSansKR-Bold.ttf',
-        width=800,
-        height=400,
-        background_color='white'
-    ).generate(text)
+        wordcloud.recolor(color_func=snu_color_func) 
 
-    wordcloud.recolor(color_func=snu_color_func)  # 🎨 색상 입히기
-
-    fig, ax = plt.subplots(figsize=(10, 5))
-    ax.imshow(wordcloud, interpolation='bilinear')
-    ax.axis("off")
-    st.pyplot(fig)
+        fig, ax = plt.subplots(figsize=(10, 5))
+        ax.imshow(wordcloud, interpolation='bilinear')
+        ax.axis("off")
+        st.pyplot(fig)
