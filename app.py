@@ -235,7 +235,75 @@ with tab2:
     st.altair_chart(bar_chart, use_container_width=True)
     st.caption("※ 데이터 기준: 2025학년도 1학기 기초교양 수강편람")
 
-    st.image("./wordcloud_img.png")
+    
+
+    # 1. 데이터 불러오기
+    df = pd.read_csv('C:/Users/1126j/file for python/25-1 dataJ/25-1-DataJournalism-final/CourseList.csv')
+    df.columns = df.columns.str.strip()  # 열 이름 공백 제거
+
+    # 2. 사용자 정의 불용어
+    custom_stopwords = set([
+        '및', '이론', '개론', '입문', '세미나', '연습', '기초', '중급', '고급',
+        'Ⅰ', 'Ⅱ', '1', '2', '3', '강좌', '개설', '학', '과목', '베리타스'
+    ])
+
+    # 3. SNU 컬러 팔레트
+    snu_palette = [
+        'rgb(15, 15, 112)',     # Dark Blue
+        'rgb(220, 218, 178)',   # Beige
+        'rgb(102, 102, 102)',   # Gray
+        'rgb(139,111,77)',      # Brown
+        'rgb(139,141,143)'      # Light Gray
+    ]
+
+    # 4. 색상 함수 정의
+    def snu_color_func(word, font_size, position, orientation, font_path, random_state):
+        return random.choice(snu_palette)
+
+    # 5. 폰트 설정
+    korean_font = 'C:/Users/1126j/file for python/25-1 dataJ/25-1-DataJournalism-final/NotoSansKR-Bold.ttf'
+    fontprop = fm.FontProperties(fname=korean_font)
+
+    # 6. 워드클라우드 생성 함수
+    def generate_wordcloud_by_area(df, font_path):
+        unique_areas = df['영역'].dropna().unique()
+        n_cols = 2
+        n_rows = (len(unique_areas) + 1) // n_cols
+
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=(14, 4 * n_rows))
+        axes = axes.flatten()
+
+        for i, area in enumerate(unique_areas):
+            area_df = df[df['영역'] == area]
+            text_raw = " ".join(area_df['교과목명'].astype(str))
+            text_no_parentheses = re.sub(r'\([^)]*\)', '', text_raw)
+            text_cleaned = re.sub(r'[^가-힣a-zA-Z\s]', '', text_no_parentheses)
+            words = text_cleaned.split()
+            filtered_text = " ".join([w for w in words if w.lower() not in custom_stopwords])
+
+            wordcloud = WordCloud(
+                font_path=font_path,
+                width=800,
+                height=400,
+                background_color='white'
+            ).generate(filtered_text)
+
+            wordcloud.recolor(color_func=snu_color_func)
+
+            axes[i].imshow(wordcloud, interpolation='bilinear')
+            axes[i].axis('off')
+            axes[i].set_title(f"{area}", fontsize=16, fontproperties=fontprop)
+
+        for j in range(i + 1, len(axes)):
+            axes[j].axis('off')
+
+        plt.tight_layout()
+        st.pyplot(fig)
+
+    # 7. 실행
+    generate_wordcloud_by_area(df, korean_font)
+
+
 
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
@@ -246,6 +314,53 @@ with tab2:
         </p>
         </div>
     """, unsafe_allow_html=True)
+
+
+    # 영역-세부영역 딕셔너리 정의
+    program_dict = {
+        '학문의 토대 Foundation': ['전체',
+            '글쓰기와 말하기(Writing and Speaking)',
+            '외국어(Foreign Languages)',
+            '수학·과학·컴퓨팅(Mathematics·Science·Computing)'],
+        '지성의 열쇠 Claves': ['전체',
+            '문화 해석과 상상(Cultural Interpretation and Imagination)',
+            '역사적 탐구와 철학적 사유(Historical Inquiry and Philosophical Thinking)',
+            '인간의 이해와 사회 분석(Understanding Humans and Society)',
+            '과학적 사고와 응용(Scientific Reasoning and Applications)'],
+        '베리타스Veritas': ['전체',
+            '베리타스강좌1(VeritasLecture1)',
+            '베리타스 실천(Veritas Practice)'],
+        '지성의 확장 Exploration': ['전체',
+            '지식의 세계(World of Knowledge)',
+            '공감과 공존(Empathy and Coexistence)',
+            '자율과 창의 (Creativity and Independent Study)',
+            '예술과 체육(Arts and Physical Education)',
+            '학부생 세미나(Undergraduate Seminars)'],
+        '전체': ['전체']
+    }
+
+    st.markdown("""
+    <br><b>세부 교과목명 확인해보기</b>
+    """, unsafe_allow_html=True)
+
+    # 사용자 입력 받기
+    col1, col2 = st.columns(2)
+
+    with col1: 
+        selected_area = st.selectbox('교양 영역을 선택하시오.', list(program_dict.keys()))
+    with col2:
+        selected_subarea = st.selectbox('세부 영역을 선택하시오.', program_dict[selected_area])
+
+    # 필터링 조건 처리
+    if selected_area == '전체':
+        filtered_df = df.copy()
+    elif selected_subarea == '전체':
+        filtered_df = df[df['영역'] == selected_area]
+    else:
+        filtered_df = df[(df['영역'] == selected_area) & (df['세부영역'] == selected_subarea)]
+
+    # 결과 표시
+    st.dataframe(filtered_df['교과목명'])
 
 
 
