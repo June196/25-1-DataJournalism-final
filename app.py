@@ -119,11 +119,8 @@ with tab1:
 
 #    program_img_path = college_data['program_img_path']
 #    st.image(program_img_path, width = 300)
-    st.markdown(f"""
-    <div style='font-size:100%; color:black;'>
-        {college_data['program_text']}  
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(college_data['program_text'])
+
     
     st.markdown("""
     <br><br><br><br>
