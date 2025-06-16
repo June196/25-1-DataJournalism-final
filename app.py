@@ -10,6 +10,8 @@ import seaborn as sns
 import altair as alt
 import re
 import plotly.express as px
+import matplotlib.font_manager as fm
+
 
 
 #SNU color 팔레트
@@ -106,62 +108,76 @@ with tab1:
     </blockquote>
     """, unsafe_allow_html=True)
 
-    col1, col2 = st.columns([1, 10])
 
-    with col1:
-        st.markdown("")
-    with col2:
-        st.markdown("")
-        
+#    program_img_path = college_data['program_img_path']
+#    st.image(program_img_path, width = 300)
+#    st.markdown(college_data['program_text'])
+    
 
-    st.markdown("---")
+    
+
 
 
 
 with tab2:
     st.header('서울대 학부대학의 비전은 무엇인가?')
+    st.markdown(f"""
+    <div style='font-size:100%; color:#333; line-height:1.6;'>
+        <p>
+            서울대학교 학부대학은 2025년 3월, 관악캠퍼스 종합화 50주년을 기념하며 출범한 새로운 교육 조직으로, 
+            서울대 학부교육 혁신의 전면에 나서고자 한다. “도전과 공감으로 미래를 여는 지성”이라는 인재상을 바탕으로, 
+            학문 간 경계를 넘는 융합적 사고와 학생 주도의 학습 설계를 지원하는 플랫폼으로 기능한다.
+        </p>
+        <p>
+            학부대학의 비전은 단순한 교과 개편을 넘어, 교육 구조 자체를 재설계하려는 데 있다. 
+            무전공 입학 확대, 공통교양 강화, 마이크로디그리 도입 등은 제도 변화 그 이상으로, 
+            학생의 주체성과 사회적 책임감을 함께 기르는 교육 철학을 반영한다.
+        </p>
+        <p>
+            공통핵심역량과 융합 교육의 내실화를 통해, 단일 학문을 넘는 통합적 사고와 실천적 역량을 강조하며, 
+            비교과 프로그램 혁신과 현장 중심 학습도 강화하고 있다. 
+            더불어 복수전공, 학생설계전공, 연합·연계 전공 등 유연한 전공 설계를 행정적으로 지원하며, 
+            학과 중심의 고정된 틀에서 벗어난 학사 구조로의 전환을 주도한다.
+        </p>
+        <p>
+            궁극적으로 학부대학은 학생이 스스로 미래를 설계할 수 있는 열린 교육 생태계를 지향한다. 
+            공급 중심에서 수요 중심으로 이동하는 시대에, 
+            학부대학은 서울대 교육 혁신의 사상적·제도적 구심점으로 자리하고 있다.
+        </p>
+        </div>
+    """, unsafe_allow_html=True)
 
+    st.image('./core_skills_img.png')        
 
 
 
 
 
 with tab3:
-    st.header('서울대 학부대학 교양교육과정은 어떻게 되는가?')
+    st.header('서울대 학부대학 교양교육과정은?')
     ## 본론 2: 서울대 학부대학_교양교육과정
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
-            2025학년도부터 서울대학교 학부대학은 공통교양 교육과정을 전면 개편했다.
-            이번 개편은 단순한 과목 조정이 아닌, 공통교양의 철학과 방향성 자체를 재설정한 일종의 선언에 가깝다.
-            학문 수행을 위한 기초 역량부터 인간과 사회에 대한 이해, 그리고 공적 책임에 대한 성찰까지,
-            서울대는 교양 교육을 통해 무엇을 가르치고자 하는지를 다시 묻고 있다.
-            특히 이번 개편에서 주목할 만한 지점은 '베리타스(Veritas)' 영역의 신설이다.
+            2025학년도부터 서울대학교 학부대학은 공통교양 교육과정을 전면 개편했다. 
+            이번 개편은 단순한 과목 조정이 아니라, 교양 교육의 철학과 방향성을 새롭게 설정한 선언에 가깝다. 
+            학문 수행을 위한 기초 역량부터 인간과 사회에 대한 이해, 공적 책임에 대한 성찰까지, 
+            서울대는 교양 교육을 통해 무엇을 가르칠 것인지 근본적으로 되묻고 있다. 
+            이 가운데 가장 주목할 변화는 ‘베리타스(Veritas)’ 영역의 신설이다.
         </p>
         <p>
-            기존의 서울대 공통교양은 세 가지 영역, 즉 '학문의 토대', '지성의 열쇠', '지성의 확장'으로 분류되었다.
-            이 중 '학문의 토대'는 글쓰기, 외국어, 수학, 과학, 컴퓨팅 등 학문 수행을 위한 도구적 능력을 다루는 영역이며,
-            '지성의 열쇠'는 역사적 탐구, 철학적 사고, 문화 해석 등 인문학 중심의 교과목들이 분포한다.
-            '지성의 확장'은 보다 창의적인 탐색이나 자기주도적 학습, 공감·소통 등을 포함하는 비교적 유연한 영역으로 설계되어 있다.
-            이번 개편에서 여기에 추가된 '베리타스'는 공동체적 가치와 실천 윤리를 중심에 둔 교과목들을 아우르며,
-            서울대 교양 교육이 지향하는 인재상에 마지막 조각을 더하는 역할을 한다.
+            기존 공통교양은 ‘학문의 토대’, ‘지성의 열쇠’, ‘지성의 확장’ 세 영역으로 구성되어 있었다. 
+            ‘학문의 토대’는 글쓰기, 외국어, 수학·과학 등 기초 도구 역량을, 
+            ‘지성의 열쇠’는 역사·철학·문화 해석 등 인문학적 탐구를, 
+            ‘지성의 확장’은 자기주도적 학습과 창의적 사고를 중심에 둔다. 
+            여기에 새로 추가된 ‘베리타스’는 공동체적 가치와 실천 윤리를 중심으로 설계되어, 
+            서울대가 지향하는 교양 인재상에 방향성을 부여한다.
         </p>
         <p>
-            이러한 개편은 학부대학이라는 새로운 틀과 함께 진행되었다는 점에서 더욱 중요하다.
-            학부대학은 단순히 교육과정을 관리하는 조직이 아니라,
-            <b>서울대가 어떤 방향의 학부교육을 상상하고 설계하는지 그 비전을 구체화하는 플랫폼</b>이기도 하다.
-            무전공 입학이라는 제도는 특정 전공 중심의 선발과 배치를 넘어서,
-            학생 스스로가 다양한 학문을 탐색하고 스스로의 문제의식을 중심에 둔 전공 설계가 가능하도록 하는 기반이다.
-            이 과정에서 교양교육, 특히 공통교양은 학문 탐색 이전에 반드시 거쳐야 할 사고의 훈련, 관점의 전환, 그리고 사회적 성찰의 장으로서 기능한다.
-            그 중심에 베리타스가 놓인 것이다.
-        </p>
-        <p>
-            그렇다면 현재 공통교양의 각 영역은 실제로 어떻게 구성되어 있을까?
-            교과목 수 기준으로 살펴보면, '지성의 열쇠'가 206개로 가장 많은 과목을 포함하고 있으며,
-            '지성의 확장'과 '학문의 토대'가 각각 175개와 171개로 뒤를 잇는다.
-            반면, 새롭게 등장한 '베리타스'는 총 40개 과목으로 구성되어 있어 전체 공통교양 중 약 6.8%만을 차지한다.
-            이는 단지 신설된 지 얼마 되지 않아 과목 수가 적은 수준을 넘어,
-            그 개설 비중이 여전히 구조적으로 제한되어 있다는 점을 보여준다.
+            이 개편은 학부대학의 출범과 맞물려 더욱 주목된다. 학부대학은 단순한 행정 조직이 아니라, 
+            서울대가 추구하는 학부교육의 비전을 설계하고 실현하는 플랫폼이다. 
+            무전공 입학, 마이크로디그리, 공통교양 강화 등은 학생 주도의 전공 설계와 학문 탐색을 지원하는 구조로 설계되었으며, 
+            베리타스는 그 교양 교육의 핵심 축으로 기능한다.
         </p>
         </div>
     """, unsafe_allow_html=True)
@@ -182,7 +198,6 @@ with tab3:
     area_counts_df.columns = ['영역', '교과목 수']
     area_counts_df['영역'] = area_counts_df['영역'].apply(lambda x: re.sub(r"[A-Za-z]+", "", x).strip())
 
-
     # Altair 차트 그리기
     bar_chart = alt.Chart(area_counts_df).mark_bar().encode(
         x=alt.X('교과목 수:Q', title='교과목 수'),
@@ -197,7 +212,7 @@ with tab3:
         labelFontSize=12,
         titleFontSize=12
     ).configure_title(
-        fontSize=14,
+        fontSize=16,
         anchor='start'
     )
 
@@ -206,17 +221,7 @@ with tab3:
     st.caption("※ 데이터 기준: 2025학년도 1학기 기초교양 수강편람")
 
 
-
-    st.markdown(f"""
-    <div style='font-size:100%; color:#333; line-height:1.6;'>
-        <p>
-            실제로 WordCloud 분석에서도 베리타스 영역은 다른 영역에 비해 상대적으로 적은 수의 키워드만이 시각적으로 나타난다.
-            이는 과목 수의 부족뿐 아니라, 베리타스 교과목이 특정 분야나 전공 지식보다는 가치 중심적 내용으로 구성되어 있어
-            텍스트 기반의 키워드 추출에서도 비교적 약하게 드러나기 때문이다.
-        </p>
-        </div>
-    """, unsafe_allow_html=True)
-
+    ## wordcloud
     # 데이터 불러오기
     df = pd.read_csv('CourseList.csv')
     korean_font = './NotoSansKR-Bold.ttf'
@@ -228,11 +233,15 @@ with tab3:
                 'rgb(139,111,77)',
                 'rgb(139,141,143)']
 
+    # 폰트 객체 생성
+    font_path1 = './NotoSansKR-Medium.ttf'  # 원하는 한글 폰트 경로
+    fontprop = fm.FontProperties(fname=font_path1)
+
     # 색상 함수 정의
     import random
     def snu_color_func(word, font_size, position, orientation, font_path, random_state):
         return random.choice(snu_palette)
-
+    
     # 워드클라우드 함수
     def generate_wordcloud_by_area(df, font_path):
         unique_areas = df['영역'].dropna().unique()
@@ -258,7 +267,7 @@ with tab3:
 
             axes[i].imshow(wordcloud, interpolation='bilinear')
             axes[i].axis('off')
-            axes[i].set_title(f"{area} 영역 WordCloud", fontsize=14)
+            axes[i].set_title(f"{area}", fontsize=16, fontproperties=fontprop)
 
         for j in range(i + 1, len(axes)):
             axes[j].axis('off')
@@ -267,22 +276,21 @@ with tab3:
         st.pyplot(fig)
 
     # Streamlit 출력
-    st.subheader("공통교양 영역별 WordCloud")
     generate_wordcloud_by_area(df, font_path=korean_font)   
 
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
-            흥미로운 점은 이 베리타스 영역이 갖는 교육적 무게감은 단순한 수치에 비해 훨씬 크다는 사실이다.
-            서울대학교 단과대학별 이수 규정을 정리해보면, 평균적으로 '학문의 토대' 영역에서 25.7학점을 이수해야 하는 데 반해,
-            베리타스는 평균 3.1학점으로 가장 적은 수치를 기록한다.
-            하지만 대부분의 단과대학에서 베리타스를 '선택'이 아닌 '필수'로 규정하고 있다는 점은,
-            이 영역이 단지 수업량으로 평가할 수 없는 교육적 함의를 가진다는 점을 시사한다.
+            실제로 WordCloud 분석에서도 베리타스 영역은 다른 영역에 비해 상대적으로 적은 수의 키워드만이 시각적으로 나타난다.
+            이는 과목 수의 부족뿐 아니라, 베리타스 교과목이 특정 분야나 전공 지식보다는 가치 중심적 내용으로 구성되어 있어
+            텍스트 기반의 키워드 추출에서도 비교적 약하게 드러나기 때문이다.
         </p>
         </div>
     """, unsafe_allow_html=True)
 
-    # 이수 규정 그래프 넣기
+
+
+    ## 공통교육 영역별 평균 이수학점 막대그래프
     # CSV 파일 불러오기
     df = pd.read_csv('CourseRequirement.csv')
 
@@ -316,18 +324,32 @@ with tab3:
         labelFontSize=12,
         titleFontSize=14
     ).configure_title(
-        fontSize=18,
+        fontSize=16,
         anchor='start'
     )
 
     # Streamlit에 출력
+    st.markdown("""
+    <br><br><br><br><br><br>
+    """, unsafe_allow_html=True)
     st.subheader('단과대학별 공통교육 영역 평균 이수학점')
     st.altair_chart(bar_chart, use_container_width=True)
 
 
+    st.markdown(f"""
+    <div style='font-size:100%; color:#333; line-height:1.6;'>
+        <p>
+            흥미로운 점은 이 베리타스 영역이 갖는 교육적 무게감은 단순한 수치에 비해 훨씬 크다는 사실이다.
+            서울대학교 단과대학별 이수 규정을 정리해보면, 평균적으로 '학문의 토대' 영역에서 25.7학점을 이수해야 하는 데 반해,
+            베리타스는 평균 3.1학점으로 가장 적은 수치를 기록한다.
+            하지만 대부분의 단과대학에서 베리타스를 '선택'이 아닌 '필수'로 규정하고 있다는 점은,
+            이 영역이 단지 수업량으로 평가할 수 없는 교육적 함의를 가진다는 점을 시사한다.
+        </p>
+        </div>
+    """, unsafe_allow_html=True)
 
 
-    # scattter plot
+    ## 단과대별 베리타스 요구 비율과 최소 교양 이수 학점 산점도
     df1 = pd.read_csv('CourseRequirements_mean.csv')
     # x축: 베리타스 비율
     df1['베리타스_비율'] = df1['베리타스'] / df1['최소 학점']
@@ -352,11 +374,11 @@ with tab3:
         y='최소학점',
         color='대학그룹',
         hover_name='대학',
-        title='베리타스 요구 비율 vs 전체 최소 교양 이수 학점'
+        title='단과대별 베리타스 요구 비율과 최소 교양 이수 학점'
     )
 
     fig.update_layout(
-    xaxis_title='베리타스 요구 비율',
+    xaxis_title='전체 중 베리타스 요구 비율',
     yaxis_title='전체 교양 이수 학점'
     )   
 
@@ -370,8 +392,7 @@ with tab3:
 
 
 
-
-    
+    ## 단과대별 공통교양 영역별 이수 학점 누적 막대그래프
     # 시각화 대상 열
     cols = ['학문의 토대', '지성의 열쇠', '베리타스', '지성의 확장']
     stacked_data = df1[['대학'] + cols].copy()
@@ -395,12 +416,13 @@ with tab3:
         y='과목 수',
         color='영역',
         color_discrete_map=color_map,
-        title='대학별 공통교양 영역 누적 막대그래프'
+        title='단과대별 공통교양 영역별 이수 학점'
     )
 
     fig.update_layout(
         barmode='stack',
-        xaxis_tickangle=-45
+        xaxis_tickangle=-45,
+       yaxis_title='학점 수'
     )
 
     # Streamlit 출력
@@ -408,40 +430,24 @@ with tab3:
 
 
 
-                
-
     st.markdown(f"""
     <div style='font-size:100%; color:#333; line-height:1.6;'>
         <p>
-            이는 베리타스가 지닌 성격, 즉 철학적 성찰과 윤리적 실천을 요구하는 수업이
-            다른 영역에 비해 개설이나 수강이 더 어렵고 까다롭기 때문이기도 하다.
-            실제로 베리타스 과목은 단과대학 고유의 전공 지식이나 학문 분야와는 일정한 거리를 유지한다.
-            이 영역은 오히려 다양한 전공과 배경을 가진 학생들이 함께 공통된 질문을 탐색하고,
-            공동체의 일원으로서의 책임감을 학습하는 데 초점을 맞춘다.
+            베리타스 과목은 단과대학의 전공 지식과는 일정한 거리를 둔다. 
+            이 영역은 다양한 전공의 학생들이 공통된 질문을 탐색하고, 공동체의 책임을 학습하는 데 초점을 맞춘다. 
+            교양 교육의 ‘내용’을 보완하기보다, 그 ‘방향’을 제시하는 장치에 가깝기 때문에, 
+            단순히 과목 수나 학점 기준으로 중요도를 판단하기 어렵다.
         </p>
         <p>
-            다시 말해, 베리타스는 교양 교육의 '내용'을 풍성하게 하기보다,
-            교양 교육의 '방향'을 명확히 설정하는 장치에 가깝다.
-            따라서 과목 수나 이수학점만으로 이 영역의 중요도를 판단하는 것은 곤란하다.
+            하지만 현재 베리타스의 구성은 충분하다고 보기 어렵다. 교양 교육은 여전히 ‘학문의 토대’ 중심이며, 
+            ‘지성의 열쇠’와 ‘지성의 확장’이 그 균형을 일부 보완하는 구조다. 베리타스는 그 바깥에 존재하며, 
+            수업 특성상 대규모 개설이나 다양한 전공 교수의 참여가 어렵다. 따라서 당장 과목 수를 확대하기보다는 현재 구조 안에서 내실을 다지고, 
+            장기적으로 다른 영역이 베리타스의 철학을 일부 수용해 교양 교육의 방향을 함께 재편할 필요가 있다.
         </p>
         <p>
-            그렇다고 해서 베리타스가 현재 상태로 충분하다고 보기는 어렵다.
-            지금의 교양 교육과정은 여전히 '학문의 토대'에 무게가 쏠려 있으며,
-            '지성의 열쇠'와 '지성의 확장'이 그 균형을 일부 보완하고 있는 구조다.
-            베리타스는 이런 구조의 바깥에 존재한다.
-            그 수업의 성격상 대규모로 개설하거나 다양한 전공 교수들이 개입하기 어렵기 때문에,
-            교과목 수나 이수 학점 확대에 있어 현실적인 제약이 뒤따른다.
-        </p>
-        <p>
-            그러나 그렇기에 더욱 베리타스는 현재 구조를 유지한 채 내실화되어야 하며,
-            장기적으로는 다른 세 영역이 베리타스의 방향성을 일부 수용해 교양 교육 전체의 재편으로 이어질 필요가 있다.
-            결국 서울대학교가 추구하는 교양 교육은 단순히 다양한 지식을 습득하는 데 그치지 않고,
-            그 지식이 어떤 사회적 맥락 속에서 작동하며,
-            개인이 그 속에서 어떤 역할과 책임을 가져야 하는지를 함께 사유하는 방식으로 이동하고 있다.
-        </p>
-        <p>
-            베리타스는 그 움직임의 핵심적 징후다. 아직 작고 낯설지만, 가장 분명한 방향을 보여주는 영역.
-            그것이 지금 서울대 교양 교육의 베리타스다. <br>
+            서울대가 지향하는 교양 교육은 지식의 습득을 넘어, 그것이 사회적 맥락 속에서 어떤 역할을 하며, 
+            개인이 어떤 책임을 져야 하는지를 성찰하는 방식으로 나아가고 있다. 베리타스는 이 전환을 가장 분명하게 드러내는 징후다. 
+            아직은 작고 낯설지만, 가장 선명한 방향을 가리키고 있다. <br>
         </p>
     </div>
     """, unsafe_allow_html=True)
@@ -477,9 +483,17 @@ st.markdown("---" "---")
 
 
 
-st.markdown("---")
-st.subheader('서울대인의 목소리')
-user_opinion = st.text_input('당신이 생각하는 융합교육이란 무엇인가요?')
+
+
+st.markdown("""
+<div style='background-color:#0f0f70; padding: 15px 30px; border-radius: 10px; margin-bottom: 20px;'>
+    <h3 style='color: white; text-align: center;'>융합교육에 대한 서울대인의 생각</h3>
+</div>
+""", unsafe_allow_html=True)
+
+# 입력창 - 라벨 제거, 플레이스홀더만
+user_opinion = st.text_input("", placeholder="당신이 생각하는 융합교육이란 무엇인가요?")
+
 
 # SNU 컬러 팔레트
 snu_palette = ['rgb(15, 15, 112)',
@@ -518,7 +532,6 @@ if not df.empty:
 
     wordcloud.recolor(color_func=snu_color_func)  # 🎨 색상 입히기
 
-    st.subheader("융합교육에 대한 서울대인의 생각")
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.imshow(wordcloud, interpolation='bilinear')
     ax.axis("off")
