@@ -79,6 +79,7 @@ with tab1:
     <br><br><br><br>
     """, unsafe_allow_html=True)
     st.subheader('해외 학부대학의 사례들')
+
     # 데이터 불러오기
     df = pd.read_excel("USA_college_university.xlsx")
 
@@ -121,6 +122,19 @@ with tab1:
 #    st.image(program_img_path, width = 300)
     st.markdown(college_data['program_text'])
 
+    st.markdown(f"""
+    <blockquote style='font-size:140%; color:#333;'>
+        <strong>{college_data['univ_name']}</strong>와 서울대학교의 비교
+    </blockquote>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f"""
+    <div style='font-size:100%; color:#333; line-height:1.6;'>
+        {college_data['snu_c']}
+    </div>
+    """, unsafe_allow_html=True)
+                
+
     
     st.markdown("""
     <br><br><br><br>
@@ -133,7 +147,7 @@ with tab1:
             서울대학교 학부대학은 2025년 3월, 관악캠퍼스 종합화 50주년을 기념하며 출범한 새로운 교육 조직으로, 
             서울대 학부교육 혁신의 전면에 나서고자 한다. “도전과 공감으로 미래를 여는 지성”이라는 인재상을 바탕으로, 
             학문 간 경계를 넘는 융합적 사고와 학생 주도의 학습 설계를 지원하는 플랫폼으로 기능한다.
-        </p>
+        </p>세
         <p>
             학부대학의 비전은 단순한 교과 개편을 넘어, 교육 구조 자체를 재설계하려는 데 있다. 
             무전공 입학 확대, 공통교양 강화, 마이크로디그리 도입 등은 제도 변화 그 이상으로, 
@@ -360,8 +374,12 @@ with tab2:
         filtered_df = df[(df['영역'] == selected_area) & (df['세부영역'] == selected_subarea)]
 
     # 결과 표시
-    st.dataframe(filtered_df['교과목명'])
-
+    #st.dataframe(filtered_df['교과목명'])
+    if not filtered_df.empty:
+        st.dataframe(filtered_df['교과목명'].sample(n=min(10, len(filtered_df)), random_state=42))
+    else:
+        st.write("해당 조건에 맞는 교과목이 없습니다.")
+    st.caption("*랜덤하게 10개의 교과목만 출력함.")
 
 
 
@@ -528,8 +546,30 @@ with tab2:
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("""
+    <br><br><br><br>
+    """, unsafe_allow_html=True)
 
+    st.info("[칼럼] 교양과목 이수 규정에 담긴 단과대학별 교육 철학")
 
+    st.markdown(f"""
+    <div style='font-size:100%; color:#333; line-height:1.6;'>
+            <p>
+                데이터 분석 결과, 모든 단과대학에서 4개의 영역 중 학문의 토대 영역의 이수 학점 비중이 가장 높았으며, 단과대별로 13학점~36.1학점으로 넓은 분포를 보였다. 
+            </p>
+            <p>
+                요구되는 교양 이수 학점이 높은 상위 3개의 단과대학는 첨단융합학부, 공과대학, 자연과학대학으로 모두 이공계열에 해당한다. 
+                특히 학문의 토대 영역의 이수 학점이 30학점 이상이라는 것은 이들 단과대학이 이공계에서 필요로하는 수학, 과학, 컴퓨팅 과목의 기초 지식을 매우 중시한다는 것을 의미한다. 
+                더 나아가 이공계에서는 서로의 전공 분야 간 지식이 요구되는 경우가 많으므로, 공통된 기초 역량을 갖추게 하는 것으로 해석된다.
+            </p>
+            <p>
+                예체능 계열인 음악대학과 미술대학의 경우 요구되는 교양 이수 학점이 25학점에 불과하며, 특히 학문의 토대에서 요구되는 학점이 13학점으로 다른 단과대학과 비교했을 때 
+                낮은 수치를 보였다. 이는 음악대학과 미술대학에서는 수학, 과학, 컴퓨팅 과목 이수의 필요성이 상대적으로 낮고, 전공과목의 중요성이 더욱 강조되기 때문으로 해석할 수 있다. 
+                또한 지성의 열쇠, 지성의 확장, 베리타스 등 다른 영역의 이수 학점을 늘리지 않은 것은 교양 이수 학점을 늘릴 경우 전공 과목의 학점을 줄이거나 전체 이수 학점을 늘려야 하는 부담 때문인 것으로 보인다.
+            </p>
+
+    </div>
+        """, unsafe_allow_html=True)
 
 
 
